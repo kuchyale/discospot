@@ -1,7 +1,8 @@
-package live.discospot;
+package live.discospot.web;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.ComponentScan;
 
 /**
  * DiscoSpot application's entry point.
@@ -10,6 +11,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @since 1.0
  */
 @SpringBootApplication
+@ComponentScan(basePackages = {"live.discospot"})
 public class DiscoSpotApplication {
 
     public static void main(String[] args) {

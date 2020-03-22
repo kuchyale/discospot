@@ -16,12 +16,12 @@
     <packaging>pom</packaging>
 
     <modules>
+        <module>spotify-client</module>
         <module>web</module>
-        <module>server</module>
     </modules>
 
     <name>Music Discovery Spot</name>
-    <description>Service that helps to find new artists and track based on yours preferences.</description>
+    <description>Service that helps to find new artists and tracks based on yours preferences.</description>
 
     <developers>
         <developer>
@@ -56,15 +56,20 @@
             <artifactId>javax.inject</artifactId>
             <version>1</version>
         </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+        </dependency>
     </dependencies>
 
     <dependencyManagement>
         <dependencies>
-            <!-- internal -->
+            <!-- INTERNAL -->
             <dependency>
                 <groupId>live.discospot</groupId>
-                <artifactId>web</artifactId>
-                <version>1.0-SNAPSHOT</version>
+                <artifactId>spotify-client</artifactId>
+                <version>${project.version}</version>
             </dependency>
 
             <dependency>
@@ -78,6 +83,7 @@
                 <version>${lombok.version}</version>
                 <scope>provided</scope>
             </dependency>
+
             <!-- webjars -->
             <dependency>
                 <groupId>org.webjars</groupId>
@@ -91,5 +97,4 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
-
 </project>
