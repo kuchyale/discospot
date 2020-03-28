@@ -11,6 +11,10 @@
 
     <artifactId>web</artifactId>
 
+    <properties>
+        <artifact-name>target/${project.parent.artifactId}.jar</artifact-name>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>live.discospot</groupId>
@@ -41,4 +45,30 @@
             <artifactId>jquery</artifactId>
         </dependency>
     </dependencies>
+
+    <build>
+        <finalName>${project.parent.artifactId}</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>com.heroku.sdk</groupId>
+                <artifactId>heroku-maven-plugin</artifactId>
+                <version>3.0.1</version>
+                <configuration>
+                    <appName>discospot</appName>
+                    <includeTarget>false</includeTarget>
+                    <includes>
+                        <include>${artifact-name}</include>
+                    </includes>
+                    <jdkVersion>${java.version}</jdkVersion>
+                    <processTypes>
+                        <web>java $JAVA_OPTS -Dserver.port=$PORT -jar ${artifact-name}</web>
+                    </processTypes>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>

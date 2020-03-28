@@ -1,2 +1,6 @@
 language: java
 jdk: openjdk11
+
+deploy:
+  provider: heroku
+  skip_cleanup: true
