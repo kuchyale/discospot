@@ -1,1 +1,1 @@
-web: java $JAVA_OPTS -Dserver.port=$PORT -jar web/${artifact-name}
+web: java $JAVA_OPTS -Dserver.port=$PORT -jar web/target/discospot.jar
