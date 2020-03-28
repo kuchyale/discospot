@@ -37,6 +37,7 @@
     </developers>
 
     <properties>
+        <java.version>11</java.version>
         <spotify.web.api.version>3.0.0</spotify.web.api.version>
         <jsr305.version>3.0.2</jsr305.version>
         <lombok.version>1.18.10</lombok.version>

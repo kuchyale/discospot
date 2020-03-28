@@ -29,3 +29,7 @@ out/
 .DS_Store
 .AppleDouble
 .LSOverride
+
+# Heroku environment properties
+.env
+heroku.properties
