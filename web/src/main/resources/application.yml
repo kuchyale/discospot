@@ -1,8 +1,21 @@
-spotify:
-  clientId:
-  clientSecret:
-  redirectUri:
-  accessTokenUri: https://accounts.spotify.com/api/token
-  userAuthorizationUri: https://accounts.spotify.com/authorize
-  scope: user-read-email,playlist-read-private,user-read-private
-  showDialog: false
+spring:
+  security:
+    oauth2:
+      client:
+        registration:
+          spotify:
+            provider: spotify-provider
+            client-id:
+            client-secret:
+            scope: user-read-email,playlist-read-private,user-read-private,user-top-read,user-read-playback-position,user-read-recently-played
+            redirect-uri-template: "{baseUrl}/login/oauth2/code/{registrationId}"
+            authorizationGrantType: authorization_code
+            client-name: Spotify
+        provider:
+          spotify-provider:
+            authorization-uri: https://accounts.spotify.com/authorize?show_dialog=true
+            token-uri: https://accounts.spotify.com/api/token
+            user-info-uri: https://api.spotify.com/v1/me
+            user-name-attribute: id
+  thymeleaf:
+    cache: false

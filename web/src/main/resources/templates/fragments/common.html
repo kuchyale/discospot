@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="New music finding and recommendations based on your Spotify account.">
+  <meta name="author" content="Aleh Kuchynski">
+
+  <title>Music Discovery Spot</title>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css"/>
+
+  <!-- Custom fonts for this template -->
+  <link href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
+  <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <!-- Custom styles for this template -->
+  <link th:href="@{/css/one-page-wonder.css}" rel="stylesheet" />
+  <link th:href="@{/css/main.css}" rel="stylesheet" />
+</head>
+
+<nav th:fragment="navClass(class)" th:class="${class}">
+  <div class="container text-white">
+    <a class="navbar-brand" href="/">Music Discovery Spot</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+            aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive" th:with="dashboardLink=${'/dashboard'}">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item" sec:authorize="isAnonymous()">
+          <a href="/oauth2/authorization/spotify" class="nav-link btn btn-success btn-block text-white">
+            <i class="fa fa-spotify"></i> Sign in with <b>Spotify</b>
+          </a>
+        </li>
+        <li class="nav-item" sec:authorize="isAuthenticated()"
+            th:if="${#httpServletRequest.requestURI} != ${dashboardLink}">
+          <a class="nav-link text-white" th:href="${dashboardLink}">Dashboard</a>
+        </li>
+        <li class="nav-item" sec:authorize="isAuthenticated()">
+          <a class="nav-link text-white" href="#" onclick="document.getElementById('logout-form').submit();">Logout</a>
+          <form id="logout-form" action="/logout" method="post" type="hidden">
+            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+          </form>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<footer class="py-5 bg-black text-white text-center">
+  <a class="d-block" href="https://github.com/kuchyale/discospot">
+    <img th:src="@{/img/github_logo.png}" style="height: 30px;">
+  </a>
+  <p>Created by <a href="mailto:o.kuchynski@gmail.com">Aleh Kuchynski</a> &copy; 2020</p>
+</footer>
